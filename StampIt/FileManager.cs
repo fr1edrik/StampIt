@@ -20,12 +20,13 @@ namespace StampIt
             if (stopWatch.IsRunning)
             {
                 stopWatch.Reset();
+                PutStamp(true);
                 return;
             }
 
             stopWatch.Start();
 
-            fileName = path + @"\" + DateTime.Now.ToString("HH.mm-dd.MM.yy") + ".txt";
+            fileName = $"{path}\\{GetNow()}.txt";
 
             Console.WriteLine(fileName);
             try
@@ -36,20 +37,17 @@ namespace StampIt
                 }
 
                 File.Create(fileName).Close();
+                PutStamp(true);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-        public static void PutStamp()
+        public static void PutStamp(bool stampDate = false)
         {
-            if (!File.Exists(fileName) && fileName.Length == 0)
-            {
-                return;
-            }
+            if (!File.Exists(fileName) && fileName.Length == 0) { return; }
 
             try
             {
@@ -58,14 +56,18 @@ namespace StampIt
 
                 using (FileStream fs = File.Open(fileName, FileMode.Append))
                 {
-                    Byte[] title = new UTF8Encoding(true).GetBytes(elapsedTime + Environment.NewLine);
-                    fs.Write(title, 0, title.Length);
+                    var recordString = !stampDate ? $" {elapsedTime}" : GetNow();
+
+                    Byte[] record = new UTF8Encoding(true).GetBytes(recordString + Environment.NewLine);
+                    fs.Write(record, 0, record.Length);
                 }
             }
             catch (Exception)
             {
                 throw;
             }
+
         }
+        private static string GetNow() => DateTime.Now.ToString("HH.mm-dd.MM.yy");
     }
 }

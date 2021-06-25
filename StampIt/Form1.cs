@@ -20,7 +20,7 @@ namespace StampIt
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        Dictionary<int, string> comboSource = null;
+        Dictionary<int, string> comboSourceHotkeyStart = null;
 
         enum KeyModifier
         {
@@ -65,19 +65,25 @@ namespace StampIt
         {
             tbDirPath.Text = Properties.Settings.Default.StoreLocation;
 
-            comboSource = new Dictionary<int, string>();
-            comboSource.Add(0, "None");
-            comboSource.Add(1, "Alt");
-            comboSource.Add(2, "Control");
-            comboSource.Add(4, "Shift");
-            comboSource.Add(8, "Win");
+            ComboBinder comboBinder = new ComboBinder(cbHotykeyStart);
+            comboBinder.AddEntries(new (int, string)[]{
+                (0, "None"),
+                (1, "Alt"),
+                (2, "Control"),
+                (4, "Shift"),
+                (8, "Win"),
+            });
+            cbHotykeyStart.DataSource = comboBinder.GetBindingSource();  //new BindingSource(comboSourceHotkeyStart, null);
+            cbHotykeyStart.DisplayMember = "Value";
+            cbHotykeyStart.ValueMember = "Key";
+            cbHotykeyStart.SelectedItem =  comboBinder.Source[Properties.Settings.Default.HotkeyStartModificatorKey];
 
-            comboBox1.DataSource = new BindingSource(comboSource, null);
-
-            comboBox1.DisplayMember = "Value";
-            comboBox1.ValueMember = "Key";
-
-            comboBox1.SelectedItem = comboSource[Properties.Settings.Default.ModificatorKey];
+            //reuse data for different combobox
+            comboBinder.ComboBox = cbHotykeyStamp;
+            cbHotykeyStamp.DataSource = comboBinder.GetBindingSource();
+            cbHotykeyStamp.DisplayMember = "Value";
+            cbHotykeyStamp.ValueMember = "Key";
+            cbHotykeyStamp.SelectedItem = comboBinder.Source[Properties.Settings.Default.HotkeyStampModificatiorKey];
 
         }
 
@@ -106,20 +112,7 @@ namespace StampIt
             //}
         }
 
-        private void TbDirPath_TextChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.StoreLocation = tbDirPath.Text;
-        }
 
-        private void BtnSaveSettings_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Save();
-        }
-
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.ModificatorKey = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
-        }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -130,11 +123,34 @@ namespace StampIt
             }
         }
 
+        private void BtnSaveSettings_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+        private void TbDirPath_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.StoreLocation = tbDirPath.Text;
+        }
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HotkeyStartModificatorKey = ((KeyValuePair<int, string>)cbHotykeyStart.SelectedItem).Key;
+        }
+
+        private void tbHotkeyStart_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HotkeyStart = tbHotkeyStart.Text;
+        }
+
         private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
             this.WindowState = FormWindowState.Normal;
             StampIt.Visible = false;
+        }
+
+        private void tbHotkeyStamp_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HotkeyStart = tbHotkeyStamp.Text;
         }
     }
 }

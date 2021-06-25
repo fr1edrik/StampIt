@@ -5,13 +5,22 @@
     <Setting Name="StoreLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\temp</Value>
     </Setting>
-    <Setting Name="ModificatorKey" Type="System.Int32" Scope="User">
+    <Setting Name="HotkeyStartModificatorKey" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="Hotkey" Type="System.String" Scope="User">
+    <Setting Name="HotkeyStart" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ModificatorValue" Type="System.String" Scope="User">
+    <Setting Name="HotkeyStartModificatorValue" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HotkeyStamp" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HotkeyStampModificatiorKey" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HotkeyStampModificatiorValue" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

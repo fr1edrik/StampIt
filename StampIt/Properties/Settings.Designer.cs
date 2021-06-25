@@ -12,7 +12,7 @@ namespace StampIt.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -38,36 +38,72 @@ namespace StampIt.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ModificatorKey {
+        public int HotkeyStartModificatorKey {
             get {
-                return ((int)(this["ModificatorKey"]));
+                return ((int)(this["HotkeyStartModificatorKey"]));
             }
             set {
-                this["ModificatorKey"] = value;
+                this["HotkeyStartModificatorKey"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Hotkey {
+        public string HotkeyStart {
             get {
-                return ((string)(this["Hotkey"]));
+                return ((string)(this["HotkeyStart"]));
             }
             set {
-                this["Hotkey"] = value;
+                this["HotkeyStart"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ModificatorValue {
+        public string HotkeyStartModificatorValue {
             get {
-                return ((string)(this["ModificatorValue"]));
+                return ((string)(this["HotkeyStartModificatorValue"]));
             }
             set {
-                this["ModificatorValue"] = value;
+                this["HotkeyStartModificatorValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HotkeyStamp {
+            get {
+                return ((string)(this["HotkeyStamp"]));
+            }
+            set {
+                this["HotkeyStamp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int HotkeyStampModificatiorKey {
+            get {
+                return ((int)(this["HotkeyStampModificatiorKey"]));
+            }
+            set {
+                this["HotkeyStampModificatiorKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HotkeyStampModificatiorValue {
+            get {
+                return ((string)(this["HotkeyStampModificatiorValue"]));
+            }
+            set {
+                this["HotkeyStampModificatiorValue"] = value;
             }
         }
     }
