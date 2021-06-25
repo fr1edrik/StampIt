@@ -20,8 +20,6 @@ namespace StampIt
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        Dictionary<int, string> comboSourceHotkeyStart = null;
-
         bool finishedLoading = false;
 
         enum KeyModifier
@@ -37,8 +35,8 @@ namespace StampIt
         {
             InitializeComponent();
 
-            RegisterHotKey(this.Handle, 0, (int)KeyModifier.Alt, Keys.A.GetHashCode());
-            RegisterHotKey(this.Handle, 1, (int)KeyModifier.Alt, Keys.S.GetHashCode());
+            //RegisterHotKey(this.Handle, 0, (int)KeyModifier.Alt, Keys.A.GetHashCode());
+            //RegisterHotKey(this.Handle, 1, (int)KeyModifier.Alt, Keys.S.GetHashCode());
         }
 
         protected override void WndProc(ref Message m)
@@ -51,11 +49,11 @@ namespace StampIt
                 {
                     case 0:
                         Console.WriteLine("A pressed");
-                        FileManager.HandleStart();
+                        //FileManager.HandleStart();
                         break;
                     case 1:
                         Console.WriteLine("B pressed");
-                        FileManager.PutStamp();
+                        //FileManager.PutStamp();
                         break;
                     default:
                         break;
@@ -89,6 +87,7 @@ namespace StampIt
             tbHotkeyStamp.Text = Properties.Settings.Default.HotkeyStamp;
             tbHotkeyStart.Text = Properties.Settings.Default.HotkeyStart;
 
+            RegisterHotkeys();
             finishedLoading = true;
         }
 
@@ -130,31 +129,31 @@ namespace StampIt
 
         private void TbDirPath_TextChanged(object sender, EventArgs e)
         {
-            if(finishedLoading)
-            Properties.Settings.Default.StoreLocation = tbDirPath.Text;
+            if (finishedLoading)
+                Properties.Settings.Default.StoreLocation = tbDirPath.Text;
         }
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(finishedLoading)
-            Properties.Settings.Default.HotkeyStartModificatorKey = ((KeyValuePair<int, string>)cbHotykeyStart.SelectedItem).Key;
+            if (finishedLoading)
+                Properties.Settings.Default.HotkeyStartModificatorKey = ((KeyValuePair<int, string>)cbHotykeyStart.SelectedItem).Key;
         }
 
         private void cbHotykeyStamp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(finishedLoading)
-            Properties.Settings.Default.HotkeyStampModificatiorKey = ((KeyValuePair<int, string>)cbHotykeyStamp.SelectedItem).Key;
+            if (finishedLoading)
+                Properties.Settings.Default.HotkeyStampModificatiorKey = ((KeyValuePair<int, string>)cbHotykeyStamp.SelectedItem).Key;
         }
 
         private void tbHotkeyStart_TextChanged(object sender, EventArgs e)
         {
-            if(finishedLoading)
-            Properties.Settings.Default.HotkeyStart = tbHotkeyStart.Text;
+            if (finishedLoading)
+                Properties.Settings.Default.HotkeyStart = tbHotkeyStart.Text;
         }
 
         private void tbHotkeyStamp_TextChanged(object sender, EventArgs e)
         {
-            if(finishedLoading)
-            Properties.Settings.Default.HotkeyStamp = tbHotkeyStamp.Text;
+            if (finishedLoading)
+                Properties.Settings.Default.HotkeyStamp = tbHotkeyStamp.Text;
         }
 
         private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -168,6 +167,36 @@ namespace StampIt
         {
 
             Properties.Settings.Default.Save();
+            RegisterHotkeys();
+        }
+
+
+        private void RegisterHotkeys()
+        {
+            if ( Properties.Settings.Default.HotkeyStart == null || Properties.Settings.Default.HotkeyStamp==null) { return; }
+
+            char hotkeyStart = Properties.Settings.Default.HotkeyStart.First();
+            char hotkeyStamp = Properties.Settings.Default.HotkeyStamp.First();
+
+            if (char.IsDigit(hotkeyStart)||char.IsDigit(hotkeyStamp)) { return; }
+
+            Func<char, int> GetKeyCode = (c) =>
+             {
+                 return ((Keys)char.ToUpper(c)).GetHashCode();
+             };
+
+
+            try
+            {
+                RegisterHotKey(this.Handle, 0, Properties.Settings.Default.HotkeyStartModificatorKey, GetKeyCode(hotkeyStart));
+                RegisterHotKey(this.Handle, 1, Properties.Settings.Default.HotkeyStampModificatiorKey, GetKeyCode(hotkeyStamp));
+            }
+            catch (Exception e)
+            {
+                UnregisterHotKey(this.Handle, 0);
+                UnregisterHotKey(this.Handle, 1);
+            }
+
         }
     }
 }

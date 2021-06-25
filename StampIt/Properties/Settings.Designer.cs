@@ -37,7 +37,7 @@ namespace StampIt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int HotkeyStartModificatorKey {
             get {
                 return ((int)(this["HotkeyStartModificatorKey"]));
@@ -49,7 +49,7 @@ namespace StampIt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("A")]
         public string HotkeyStart {
             get {
                 return ((string)(this["HotkeyStart"]));
@@ -61,7 +61,7 @@ namespace StampIt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string HotkeyStartModificatorValue {
             get {
                 return ((string)(this["HotkeyStartModificatorValue"]));
@@ -73,7 +73,7 @@ namespace StampIt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("S")]
         public string HotkeyStamp {
             get {
                 return ((string)(this["HotkeyStamp"]));

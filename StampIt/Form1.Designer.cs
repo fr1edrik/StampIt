@@ -44,9 +44,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelHotkey = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tbDirPath = new System.Windows.Forms.TextBox();
             this.btnOpenBrowserDialog = new System.Windows.Forms.Button();
             this.StampIt = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tbDirPath = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -184,6 +184,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 29);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // tbDirPath
+            // 
+            this.tbDirPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::StampIt.Properties.Settings.Default, "StoreLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbDirPath.Location = new System.Drawing.Point(3, 3);
+            this.tbDirPath.Name = "tbDirPath";
+            this.tbDirPath.Size = new System.Drawing.Size(155, 20);
+            this.tbDirPath.TabIndex = 12;
+            this.tbDirPath.Text = global::StampIt.Properties.Settings.Default.StoreLocation;
+            this.tbDirPath.TextChanged += new System.EventHandler(this.TbDirPath_TextChanged);
+            // 
             // btnOpenBrowserDialog
             // 
             this.btnOpenBrowserDialog.Location = new System.Drawing.Point(164, 3);
@@ -201,16 +211,6 @@
             this.StampIt.Icon = ((System.Drawing.Icon)(resources.GetObject("StampIt.Icon")));
             this.StampIt.Text = "Stamp It!";
             this.StampIt.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
-            // 
-            // tbDirPath
-            // 
-            this.tbDirPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::StampIt.Properties.Settings.Default, "StoreLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbDirPath.Location = new System.Drawing.Point(3, 3);
-            this.tbDirPath.Name = "tbDirPath";
-            this.tbDirPath.Size = new System.Drawing.Size(155, 20);
-            this.tbDirPath.TabIndex = 12;
-            this.tbDirPath.Text = global::StampIt.Properties.Settings.Default.StoreLocation;
-            this.tbDirPath.TextChanged += new System.EventHandler(this.TbDirPath_TextChanged);
             // 
             // Form1
             // 
