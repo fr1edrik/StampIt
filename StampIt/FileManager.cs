@@ -56,7 +56,7 @@ namespace StampIt
 
                 using (FileStream fs = File.Open(fileName, FileMode.Append))
                 {
-                    var recordString = !stampDate ? $" {elapsedTime}" : GetNow();
+                    var recordString = !stampDate ? $" {elapsedTime}" : GetNow(isInFile: true);
 
                     Byte[] record = new UTF8Encoding(true).GetBytes(recordString + Environment.NewLine);
                     fs.Write(record, 0, record.Length);
@@ -68,6 +68,6 @@ namespace StampIt
             }
 
         }
-        private static string GetNow() => DateTime.Now.ToString("HH.mm-dd.MM.yy");
+        private static string GetNow(bool isInFile = false) => DateTime.Now.ToString("HH" + (isInFile ? ':' : '.') + "mm-dd.MM.yy");
     }
 }

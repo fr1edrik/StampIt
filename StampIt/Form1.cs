@@ -49,11 +49,11 @@ namespace StampIt
                 {
                     case 0:
                         Console.WriteLine("A pressed");
-                        //FileManager.HandleStart();
+                        FileManager.HandleStart();
                         break;
                     case 1:
                         Console.WriteLine("B pressed");
-                        //FileManager.PutStamp();
+                        FileManager.PutStamp();
                         break;
                     default:
                         break;
