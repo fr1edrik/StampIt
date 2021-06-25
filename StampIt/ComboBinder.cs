@@ -11,10 +11,8 @@ namespace StampIt
     {
         public Dictionary<int, string> Source { get; private set; }
 
-        public ComboBox ComboBox { get; set; }
 
-        public ComboBinder(ComboBox comboBox){
-            ComboBox = comboBox;
+        public ComboBinder(){
             Source = new Dictionary<int, string>();
         }
 

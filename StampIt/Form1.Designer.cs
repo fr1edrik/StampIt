@@ -44,9 +44,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelHotkey = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tbDirPath = new System.Windows.Forms.TextBox();
             this.btnOpenBrowserDialog = new System.Windows.Forms.Button();
             this.StampIt = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tbDirPath = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -87,10 +87,13 @@
             this.cbHotykeyStamp.Size = new System.Drawing.Size(94, 21);
             this.cbHotykeyStamp.TabIndex = 16;
             this.cbHotykeyStamp.Tag = "";
+            this.cbHotykeyStamp.SelectedIndexChanged += new System.EventHandler(this.cbHotykeyStamp_SelectedIndexChanged);
             // 
             // tbHotkeyStamp
             // 
+            this.tbHotkeyStamp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbHotkeyStamp.Location = new System.Drawing.Point(103, 3);
+            this.tbHotkeyStamp.MaxLength = 1;
             this.tbHotkeyStamp.Name = "tbHotkeyStamp";
             this.tbHotkeyStamp.Size = new System.Drawing.Size(136, 20);
             this.tbHotkeyStamp.TabIndex = 15;
@@ -127,7 +130,9 @@
             // 
             // tbHotkeyStart
             // 
+            this.tbHotkeyStart.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbHotkeyStart.Location = new System.Drawing.Point(103, 3);
+            this.tbHotkeyStart.MaxLength = 1;
             this.tbHotkeyStart.Name = "tbHotkeyStart";
             this.tbHotkeyStart.Size = new System.Drawing.Size(136, 20);
             this.tbHotkeyStart.TabIndex = 15;
@@ -179,16 +184,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 29);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // tbDirPath
-            // 
-            this.tbDirPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::StampIt.Properties.Settings.Default, "StoreLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbDirPath.Location = new System.Drawing.Point(3, 3);
-            this.tbDirPath.Name = "tbDirPath";
-            this.tbDirPath.Size = new System.Drawing.Size(155, 20);
-            this.tbDirPath.TabIndex = 12;
-            this.tbDirPath.Text = global::StampIt.Properties.Settings.Default.StoreLocation;
-            this.tbDirPath.TextChanged += new System.EventHandler(this.TbDirPath_TextChanged);
-            // 
             // btnOpenBrowserDialog
             // 
             this.btnOpenBrowserDialog.Location = new System.Drawing.Point(164, 3);
@@ -206,6 +201,16 @@
             this.StampIt.Icon = ((System.Drawing.Icon)(resources.GetObject("StampIt.Icon")));
             this.StampIt.Text = "Stamp It!";
             this.StampIt.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
+            // 
+            // tbDirPath
+            // 
+            this.tbDirPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::StampIt.Properties.Settings.Default, "StoreLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbDirPath.Location = new System.Drawing.Point(3, 3);
+            this.tbDirPath.Name = "tbDirPath";
+            this.tbDirPath.Size = new System.Drawing.Size(155, 20);
+            this.tbDirPath.TabIndex = 12;
+            this.tbDirPath.Text = global::StampIt.Properties.Settings.Default.StoreLocation;
+            this.tbDirPath.TextChanged += new System.EventHandler(this.TbDirPath_TextChanged);
             // 
             // Form1
             // 
