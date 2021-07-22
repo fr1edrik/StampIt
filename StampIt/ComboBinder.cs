@@ -11,8 +11,8 @@ namespace StampIt
     {
         public Dictionary<int, string> Source { get; private set; }
 
-
-        public ComboBinder(){
+        public ComboBinder()
+        {
             Source = new Dictionary<int, string>();
         }
 
@@ -21,13 +21,9 @@ namespace StampIt
             Source.Add(index, val);
         }
 
-        public void AddEntries((int, string)[] entries)
-        {
-            foreach(var entry in entries)
-            {
-                Source.Add(entry.Item1, entry.Item2);
-            }
-        }
+        public void AddEntries(params (int, string)[] entries) =>
+            Array.ForEach(entries, entry => Source.Add(entry.Item1, entry.Item2));
+
 
         public BindingSource GetBindingSource() => new BindingSource(Source, null);
     }

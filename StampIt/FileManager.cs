@@ -28,13 +28,10 @@ namespace StampIt
 
             fileName = $"{path}\\{GetNow()}.txt";
 
-            Console.WriteLine(fileName);
             try
             {
                 if (File.Exists(fileName))
-                {
                     File.Delete(fileName);
-                }
 
                 File.Create(fileName).Close();
                 PutStamp(true);

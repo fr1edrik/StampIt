@@ -34,9 +34,6 @@ namespace StampIt
         public Form1()
         {
             InitializeComponent();
-
-            //RegisterHotKey(this.Handle, 0, (int)KeyModifier.Alt, Keys.A.GetHashCode());
-            //RegisterHotKey(this.Handle, 1, (int)KeyModifier.Alt, Keys.S.GetHashCode());
         }
 
         protected override void WndProc(ref Message m)
@@ -66,13 +63,13 @@ namespace StampIt
             tbDirPath.Text = Properties.Settings.Default.StoreLocation;
 
             ComboBinder comboBinder = new ComboBinder();
-            comboBinder.AddEntries(new (int, string)[]{
+            comboBinder.AddEntries(
                 (0, "None"),
                 (1, "Alt"),
                 (2, "Control"),
                 (4, "Shift"),
-                (8, "Win"),
-            });
+                (8, "Win")
+            );
 
             cbHotykeyStart.DataSource = comboBinder.GetBindingSource();
             cbHotykeyStart.DisplayMember = "Value";
@@ -173,12 +170,12 @@ namespace StampIt
 
         private void RegisterHotkeys()
         {
-            if ( Properties.Settings.Default.HotkeyStart == null || Properties.Settings.Default.HotkeyStamp==null) { return; }
+            if (Properties.Settings.Default.HotkeyStart == null || Properties.Settings.Default.HotkeyStamp == null) { return; }
 
             char hotkeyStart = Properties.Settings.Default.HotkeyStart.First();
             char hotkeyStamp = Properties.Settings.Default.HotkeyStamp.First();
 
-            if (char.IsDigit(hotkeyStart)||char.IsDigit(hotkeyStamp)) { return; }
+            if (char.IsDigit(hotkeyStart) || char.IsDigit(hotkeyStamp)) { return; }
 
             Func<char, int> GetKeyCode = (c) =>
              {
